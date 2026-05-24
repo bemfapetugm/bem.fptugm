@@ -2,288 +2,142 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>BEM Fapet UGM | Official Website</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archer:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. SETTING DASAR (CSS VARIABLES) --- */
-        :root {
-            --primary: #0A3D36;    /* Hijau Botol Fapet */
-            --secondary: #FFC107;  /* Kuning Emas UGM */
-            --accent: #E8F5E9;     /* Hijau Muda Soft */
-            --dark: #1A1A1A;
-            --white: #FFFFFF;
-        }
-
+        /* --- Reset Margin & Padding Dasar --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Archer', sans-serif;
         }
 
+        /* --- Penyimpanan Variabel Warna Website --- */
+        :root {
+            --secondary: #FFC107;  /* Warna Kuning Emas khas UGM */
+            --dark: #1A1A1A;       /* Warna teks utama (hitam elegan) */
+            --white: #FFFFFF;      /* Warna putih murni */
+            --light-bg: #F9FBF9;   /* Warna latar belakang halaman (putih tulang soft) */
+        }
+
+        /* --- Pengaturan Tampilan Body Halaman --- */
         body {
-            background-color: #f9fbf9;
+            background-color: var(--light-bg);
             color: var(--dark);
             line-height: 1.6;
         }
 
-        /* --- 2. NAVIGASI (NAVBAR) --- */
-        nav {
-            background-color: var(--primary);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 8%;
-            position: sticky;
+        /* --- Desain Kontainer Atas (Header Kaca) --- */
+        header {
+            background-color: rgba(58, 58, 58, 0.65); /* Warna abu transparan */
+            backdrop-filter: blur(10px);             /* Efek blur/frosted glass */
+            -webkit-backdrop-filter: blur(10px);     
+            position: fixed;                         /* Membuat header melayang permanen di atas */
+            width: 100%;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;                           /* Memastikan header tidak tertimbun konten lain */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        nav .logo {
+        /* --- Tata Letak Menu Navigasi (Navbar) --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;          /* Logo di kiri, menu di kanan */
+            align-items: center;
+            padding: 1.2rem 8%;
+        }
+
+        /* --- Desain Teks Logo --- */
+        .navbar .logo {
             color: var(--white);
             font-weight: 700;
             font-size: 1.5rem;
             text-decoration: none;
+            letter-spacing: 0.5px;
         }
 
-        nav .logo span {
+        /* --- Warna Aksen Emas untuk Kata 'UGM' --- */
+        .navbar .logo span {
             color: var(--secondary);
         }
 
-        nav ul {
+        /* --- Desain Baris Menu Tautan --- */
+        .nav-links {
             display: flex;
-            list-style: none;
+            list-style: none;                        /* Menghilangkan tanda bullet bulat default */
         }
 
-        nav ul li {
-            margin-left: 2rem;
+        /* --- Jarak Antar Menu Tautan --- */
+        .nav-links li {
+            margin-left: 2.5rem;
         }
 
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
+        /* --- Desain Teks Link Menu --- */
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;                  /* Menghilangkan garis bawah default pada link */
+            font-weight: 400;
+            font-size: 1rem;
+            transition: color 0.3s ease;            /* Animasi halus saat warna berubah */
         }
 
-        nav ul li a:hover {
+        /* --- Efek Ketika Kursor Menyentuh Menu --- */
+        .nav-links a:hover {
             color: var(--secondary);
         }
 
-        /* --- 3. HERO SECTION (BANNER UTAMA) --- */
-        .hero {
-            background: linear-gradient(rgba(10, 61, 54, 0.8), rgba(10, 61, 54, 0.8)), 
-                        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000') no-repeat center center/cover;
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* --- Desain Konten Utama Area Tengah --- */
+        main {
+            padding: 8rem 8% 5rem;                   /* padding-top 8rem agar teks tidak tertutup header */
             text-align: center;
-            color: var(--white);
-            padding: 0 20px;
+            max-width: 800px;
+            margin: 0 auto;                          /* Membuat kontainer otomatis di tengah layar */
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .hero h1 span {
-            color: var(--secondary);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .cta-button {
-            background-color: var(--secondary);
-            color: var(--primary);
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            transition: 0.3s transform ease;
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- 4. SECTION KEMENTERIAN (GRID) --- */
-        .section-padding {
-            padding: 5rem 8%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.2rem;
-            color: var(--primary);
-        }
-
-        .section-title .underline {
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-            margin: 10px auto;
-            border-radius: 2px;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-bottom: 5px solid transparent;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            border-bottom: 5px solid var(--secondary);
-            transform: translateY(-10px);
-        }
-
-        .card h3 {
-            color: var(--primary);
+        /* --- Jarak Bawah untuk Judul Selamat Datang --- */
+        main h1 {
             margin-bottom: 1rem;
         }
 
-        /* --- 5. FOOTER --- */
-        footer {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 4rem 8% 2rem;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 2rem;
-        }
-
-        .footer-about {
-            flex: 2;
-            max-width: 500px;
-        }
-
-        .footer-links {
-            flex: 1;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .footer-links ul li a:hover {
-            color: var(--secondary);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            font-size: 0.85rem;
-            color: #888;
-        }
-
-        /* Responsive Mobile */
+        /* --- Aturan Khusus Layran HP (Mobile Responsive) --- */
         @media (max-width: 768px) {
-            nav ul { display: none; } /* Sembunyikan menu di HP untuk nanti dibuat hamburger */
-            .hero h1 { font-size: 2rem; }
+            .navbar {
+                flex-direction: column;              /* Susun vertikal jika layar kekecilan */
+                gap: 1rem;
+            }
+            .nav-links li {
+                margin: 0 1rem;
+            }
+            main h1 {
+                font-size: 2rem;                     /* Ukuran judul mengecil di HP */
+            }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo">BEM FAPET <span>UGM</span></a>
-        <ul>
-            <li><a href="#beranda">Beranda</a></li>
-            <li><a href="#profil">Profil</a></li>
-            <li><a href="#kementerian">Kementerian</a></li>
-            <li><a href="#aspirasi">Aspirasi</a></li>
-        </ul>
-    </nav>
-
-    <section class="hero" id="beranda">
-        <h1>Kabinet <span>Sinergi Hebat</span></h1>
-        <p>Bergerak dengan integritas, mengabdi dengan ikhlas untuk kemajuan peternakan Indonesia yang berkelanjutan.</p>
-        <a href="#aspirasi" class="cta-button">Sampaikan Aspirasi</a>
-    </section>
-
-    <section class="section-padding" id="kementerian">
-        <div class="section-title">
-            <h2>Kementerian BEM</h2>
-            <div class="underline"></div>
-        </div>
-
-        <div class="grid-container">
-            <div class="card">
-                <h3>PSDM</h3>
-                <p>Pengembangan Sumber Daya Mahasiswa fokus pada peningkatan kapasitas kepemimpinan dan karakter mahasiswa Fapet UGM.</p>
-            </div>
-            <div class="card">
-                <h3>Sospol</h3>
-                <p>Sosial Politik bertugas mengawal isu-isu strategis baik di lingkup kampus maupun nasional secara kritis dan solutif.</p>
-            </div>
-            <div class="card">
-                <h3>Medkominfo</h3>
-                <p>Media dan Komunikasi Informasi sebagai pusat syiar kreatif dan pengelola platform digital BEM Fapet UGM.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-about">
-                <h3>BEM Fapet UGM</h3>
-                <p style="margin-top: 1rem; color: #ccc;">Organisasi mahasiswa tertinggi di tingkat Fakultas Peternakan Universitas Gadjah Mada yang berkomitmen menjadi wadah aspirasi dan pengembangan diri.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Navigasi</h4>
-                <ul style="margin-top: 1rem;">
-                    <li><a href="#beranda">Beranda</a></li>
-                    <li><a href="#profil">Profil</a></li>
-                    <li><a href="#kementerian">Kementerian</a></li>
-                    <li><a href="#aspirasi">Aspirasi</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2026 BEM Fakultas Peternakan UGM. Website Resmi.</p>
-        </div>
-    </footer>
-
-</body>
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">BEM FAPET <span>UGM</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Profil</a></li>
+                <li><a href="#">Kementerian</a></li>
+                <li><a href="#">Aspirasi</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Selamat Datang di Website Resmi BEM Fapet UGM</h1>
+        <p>Temukan informasi terbaru tentang kegiatan, program, dan berita seputar BEM Fapet UGM di sini.</p>
+    </main>
+    </body>
 </html>

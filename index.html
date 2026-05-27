@@ -2,142 +2,259 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>BEM Fapet UGM | Official Website</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- Reset Margin & Padding Dasar --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* --- Penyimpanan Variabel Warna Website --- */
-        :root {
-            --secondary: #FFC107;  /* Warna Kuning Emas khas UGM */
-            --dark: #1A1A1A;       /* Warna teks utama (hitam elegan) */
-            --white: #FFFFFF;      /* Warna putih murni */
-            --light-bg: #F9FBF9;   /* Warna latar belakang halaman (putih tulang soft) */
-        }
-
-        /* --- Pengaturan Tampilan Body Halaman --- */
-        body {
-            background-color: var(--light-bg);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        /* --- Desain Kontainer Atas (Header Kaca) --- */
-        header {
-            background-color: rgba(58, 58, 58, 0.65); /* Warna abu transparan */
-            backdrop-filter: blur(10px);             /* Efek blur/frosted glass */
-            -webkit-backdrop-filter: blur(10px);     
-            position: fixed;                         /* Membuat header melayang permanen di atas */
-            width: 100%;
-            top: 0;
-            z-index: 1000;                           /* Memastikan header tidak tertimbun konten lain */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        /* --- Tata Letak Menu Navigasi (Navbar) --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;          /* Logo di kiri, menu di kanan */
-            align-items: center;
-            padding: 1.2rem 8%;
-        }
-
-        /* --- Desain Teks Logo --- */
-        .navbar .logo {
-            color: var(--white);
-            font-weight: 700;
-            font-size: 1.5rem;
-            text-decoration: none;
-            letter-spacing: 0.5px;
-        }
-
-        /* --- Warna Aksen Emas untuk Kata 'UGM' --- */
-        .navbar .logo span {
-            color: var(--secondary);
-        }
-
-        /* --- Desain Baris Menu Tautan --- */
-        .nav-links {
-            display: flex;
-            list-style: none;                        /* Menghilangkan tanda bullet bulat default */
-        }
-
-        /* --- Jarak Antar Menu Tautan --- */
-        .nav-links li {
-            margin-left: 2.5rem;
-        }
-
-        /* --- Desain Teks Link Menu --- */
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;                  /* Menghilangkan garis bawah default pada link */
-            font-weight: 400;
-            font-size: 1rem;
-            transition: color 0.3s ease;            /* Animasi halus saat warna berubah */
-        }
-
-        /* --- Efek Ketika Kursor Menyentuh Menu --- */
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-
-        /* --- Desain Konten Utama Area Tengah --- */
-        main {
-            padding: 8rem 8% 5rem;                   /* padding-top 8rem agar teks tidak tertutup header */
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;                          /* Membuat kontainer otomatis di tengah layar */
-        }
-
-        /* --- Jarak Bawah untuk Judul Selamat Datang --- */
-        main h1 {
-            margin-bottom: 1rem;
-        }
-
-        /* --- Aturan Khusus Layran HP (Mobile Responsive) --- */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;              /* Susun vertikal jika layar kekecilan */
-                gap: 1rem;
-            }
-            .nav-links li {
-                margin: 0 1rem;
-            }
-            main h1 {
-                font-size: 2rem;                     /* Ukuran judul mengecil di HP */
-            }
-        }
-    </style>
+    <title>BEM Fakultas Peternakan UGM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
-        <nav class="navbar">
-            <a href="#" class="logo">BEM FAPET <span>UGM</span></a>
-            
-            <ul class="nav-links">
-                <li><a href="#">Beranda</a></li>
-                <li><a href="#">Profil</a></li>
-                <li><a href="#">Kementerian</a></li>
-                <li><a href="#">Aspirasi</a></li>
-            </ul>
-        </nav>
+    <header class="main-header">
+        <div class="container header-box">
+            <div class="logo-container">
+                <img src="assets/logo-header-kabinet.svg" alt="Logo Kabinet BEM Fapet UGM" class="main-logo">
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li>
+                        <a href="#profile">
+                            Tentang Kami
+                            <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#program">
+                            Program Kerja
+                            <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#kabar">
+                            Kabar BEM
+                            <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#pengumuman">
+                            Pengumuman
+                            <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#layanan">
+                            Layanan Publik
+                            <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="lang-switcher notranslate">
+                        <a href="#" class="lang-btn">
+                            <svg class="lang-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                            
+                            <span id="active-lang">Indonesia</span>
+                            
+                            <svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </a>
+                        <ul class="lang-dropdown">
+                            <li><a href="#" class="lang-option" data-lang="id">Indonesia</a></li>
+                            <li><a href="#" class="lang-option" data-lang="en">English</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main>
-        <h1>Selamat Datang di Website Resmi BEM Fapet UGM</h1>
-        <p>Temukan informasi terbaru tentang kegiatan, program, dan berita seputar BEM Fapet UGM di sini.</p>
+
+    <main class="content">
+        <div class="container">
+            
+            <div class="ticker-wrapper">
+                <div class="ticker-title">
+                    <img src="assets/icon-warning.svg" alt="Peringatan" class="ticker-icon">
+                    Pengumuman
+                </div>
+                <div class="ticker-text">
+                    <marquee scrollamount="5">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</marquee>
+                </div>
+            </div>
+
+            <div class="main-grid">
+                
+                <div class="info-section">
+                    <h1 class="main-title">Pusat Layanan Informasi dan Advokasi<br>BEM Fakultas Peternakan UGM</h1>
+                    <p class="sub-title">Pusat informasi resmi, pelayanan mahasiswa, dan media aspirasi dari BEM Fakultas Peternakan Universitas Gadjah Mada</p>
+                    
+                    <div class="search-container">
+                        <div class="search-input-box">
+                            <img src="assets/icon-search.svg" alt="Cari" class="search-icon">
+                            <input type="text" placeholder="Beasiswa">
+                        </div>
+                        <button class="btn-search">Cari</button>
+                    </div>
+
+                    <div class="popular-tags">
+                        <span>Pencarian populer terkini</span>
+                        <div class="tags-group">
+                            <a href="#" class="tag">Beasiswa</a>
+                            <a href="#" class="tag">UKT</a>
+                            <a href="#" class="tag">Hearing</a>
+                            <a href="#" class="tag">Libur</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="agenda-section">
+                    <div class="agenda-card">
+                        <div class="agenda-header">
+                            <h3>Agenda BEM</h3>
+                            <span class="agenda-date">Senin, 25 Mei 2026</span>
+                        </div>
+                        
+                        <div class="agenda-time-box">
+                            <div class="time-text">
+                                <h2>00:00 <span>WIB</span></h2>
+                            </div>
+                            <img src="assets/icon-calendar.svg" alt="Kalender" class="calendar-icon">
+                        </div>
+
+                        <div class="agenda-details">
+                            <h4>Rapat Koordinasi Divisi</h4>
+                            <p class="location">
+                                <img src="assets/icon-location.svg" alt="Lokasi" class="location-icon">
+                                Auditorium Fakultas Peternakan UGM
+                            </p>
+                        </div>
+
+                        <div class="agenda-status-grid">
+                            <div class="status-col">
+                                <span>Sifat Acara</span>
+                                <div class="badge">Terbuka</div>
+                            </div>
+                            <div class="status-col">
+                                <span>Kategori Acara</span>
+                                <div class="badge">Pimpinan</div>
+                            </div>
+                            <div class="status-col">
+                                <span>Tipe Acara</span>
+                                <div class="badge">Offline</div>
+                            </div>
+                        </div>
+
+                        <button class="btn-agenda-calendar">Lihat Kalender Agenda</button>
+                    </div>
+                </div>
+
+            </div> </div>
     </main>
-    </body>
+
+    <section class="layanan-section">
+        <div class="container">
+            
+            <div class="layanan-box">
+                
+                <h2 class="layanan-title">Layanan Publik</h2>
+                <p class="layanan-subtitle">Pusat pelayanan mahasiswa dan publik terpadu</p>
+                
+                <div class="layanan-grid">
+                    
+                    <a href="#" class="layanan-card" style="background-image: url('assets/bg-kotak-kolaborasi.png');">
+                        <div class="layanan-overlay">
+                            <h3>KOTAK KOLABORASI</h3>
+                            <p>Kerjasama dan Media Partner</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="layanan-card" style="background-image: url('assets/bg-kotak-kolaborasi.png');">
+                        <div class="layanan-overlay">
+                            <h3>KOTAK KOLABORASI</h3>
+                            <p>Kerjasama dan Media Partner</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="layanan-card" style="background-image: url('assets/bg-kotak-kolaborasi.png');">
+                        <div class="layanan-overlay">
+                            <h3>KOTAK KOLABORASI</h3>
+                            <p>Kerjasama dan Media Partner</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="layanan-card" style="background-image: url('assets/bg-kotak-kolaborasi.png');">
+                        <div class="layanan-overlay">
+                            <h3>KOTAK KOLABORASI</h3>
+                            <p>Kerjasama dan Media Partner</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="layanan-card" style="background-image: url('assets/bg-kotak-kolaborasi.png');">
+                        <div class="layanan-overlay">
+                            <h3>KOTAK KOLABORASI</h3>
+                            <p>Kerjasama dan Media Partner</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="layanan-card" style="background-image: url('assets/bg-kotak-kolaborasi.png');">
+                        <div class="layanan-overlay">
+                            <h3>KOTAK KOLABORASI</h3>
+                            <p>Kerjasama dan Media Partner</p>
+                        </div>
+                    </a>
+
+                </div> </div>
+        </div>
+    </section>
+
+    <section class="slider-section">
+        <div class="container banner-container"> 
+            
+            <div class="carousel-wrapper">
+                <div class="carousel-track">
+                    
+                    <div class="carousel-slide">
+                        <img src="assets/banner-1.svg" alt="Banner Informasi 1" class="banner-image">
+                    </div>
+
+                    <div class="carousel-slide">
+                        <img src="assets/banner-2.png" alt="Banner Informasi 2" class="banner-image">
+                    </div>
+
+                    <div class="carousel-slide">
+                        <img src="assets/banner-1.png" alt="Banner Informasi 3" class="banner-image">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
+        </div>
+    </section>
+    
+    <script src="script.js"></script>
+    <div id="google_translate_element"></div>
+    
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'id',
+                includedLanguages: 'id,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
 </html>

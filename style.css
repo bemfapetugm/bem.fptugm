@@ -1,0 +1,697 @@
+/* RESET CSS: Menghapus margin bawaan browser agar pas di layar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Diatur sekali untuk semua */
+}
+
+/* WADAH GLOBAL UNTUK KONTEN WEBSITE */
+.container {
+    width: 95%;           
+    max-width: 1440px;    
+    margin: 0 auto;       /* Kunci posisi selalu di tengah layar */
+}
+
+/* STYLING HEADER UTAMA */
+.main-header {
+    background-color: #2c3e50; /* Jika ingin background gelap sesuai kodemu */
+    color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Mengatur posisi Logo & Navbar di dalam wadah Container */
+.header-box {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;            
+    padding: 15px 0;                
+}
+
+/* Pengaturan untuk area logo di kiri */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.main-logo {
+    height: 45px; 
+    width: auto;  
+}
+
+/* STYLING NAVBAR / MENU */
+.navbar > ul {
+    list-style: none; 
+    display: flex;    
+    align-items: center;
+}
+
+.navbar li {
+    margin-left: 15px; /* Jarak antar menu sedikit diperlonggar agar rapi */
+}
+
+/* Gabungan fungsi .navbar a dan .menu-item yang telah disatukan */
+.navbar a {
+    color: #ffffff; /* Ubah ke #064e70 jika nanti background header diganti putih */
+    text-decoration: none; 
+    font-size: 14px;
+    font-weight: 600; /* Menggunakan semi-bold agar ikon dan teks seimbang */
+    padding: 8px 12px;
+    display: flex;         /* Membuat teks dan ikon berdampingan */
+    align-items: center;   /* Membuat teks dan ikon lurus vertikal */
+    gap: 6px;              /* Jarak antara teks menu dan ikon panah */
+    border-radius: 4px;
+    transition: all 0.3s ease; 
+}
+
+/* EFEK HOVER & KELAS AKTIF */
+.navbar a:hover, 
+.navbar a.active {
+    color: #3498db; 
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+
+/* Ukuran dan ketebalan garis ikon panah */
+.icon-chevron {
+    width: 14px;               
+    height: 14px;              
+    display: inline-block;
+}
+
+/* Jarak aman untuk Konten Utama dan Wadah Warna Abu-abu */
+.content {
+    position: relative;        /* Kunci posisi agar elemen lengkungan bisa menempel di bawah */
+    background-color: #e0e0e0; /* Warna abu-abu dipindahkan ke sini */
+    margin-top: 70px;          /* Menyesuaikan jarak aman dari fixed header */
+    padding-top: 60px;         /* Jarak ruang dalam bagian atas */
+    padding-bottom: 350px;     /* Beri ruang ekstra di bawah untuk tempat lengkungannya */
+    overflow: hidden;          /* WAJIB: Memotong sisa lingkaran oval agar tidak meluber keluar layar */
+}
+
+/* MEMBUAT LENGKUNGAN PUTIH DI BAWAH SEKSI ABU-ABU */
+.content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -10%;                /* Dilebihkan ke kiri agar lengkungan tidak patah di layar lebar */
+    width: 120%;               /* Dilebihkan ke kanan */
+    height: 120px;             /* Tinggi lengkungan (bisa kamu naik-turunkan angkanya sesuai selera) */
+    background-color: #ffffff; /* Menggunakan warna putih sesuai area bawah */
+    
+    /* Rumus saktinya: Membuat sudut atas kanan & kiri berbentuk oval sempurna */
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+}
+
+/* BACKGROUND HALAMAN BIAR AGAK ABU-ABU SESUAI FOTO */
+body {
+    background-color: #ffffff; /* Warna putih solid sesuai gambar referensi */
+}
+
+/* --- STYLING 1: PENGUMUMAN BERJALAN --- */
+.ticker-wrapper {
+    background-color: #005b7f; 
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    max-width: 620px; /* Mengunci lebar bar agar sama dengan panjang pencarian & judul */
+}
+
+.ticker-title {
+    background-color: #004662; 
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ticker-text {
+    flex: 1;
+    padding: 0 2px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* STYLING BARU UNTUK IKON ASSETS */
+.ticker-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.calendar-icon {
+    width: 65px; 
+    height: 65px;
+    display: inline-block;
+    opacity: 0.8; /* Menjaga kelembutan warna hitam ikon */
+}
+
+.location-icon {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+}
+
+/* --- STYLING TATA LETAK GRID (KIRI & KANAN) --- */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr; 
+    gap: 50px; 
+    align-items: start;
+}
+
+/* ==========================================================
+   POLISH UI: SEKSI INFORMASI & PENCARIAN (KIRI)
+   ========================================================== */
+
+/* Judul Utama: Dibuat lebih tegas dan tebal */
+.main-title {
+    font-size: 38px;
+    color: #333333; /* Warna abu-abu sangat gelap sesuai Figma */
+    font-weight: 800; /* Tebal maksimal agar dominan */
+    line-height: 1.25;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+
+/* Sub-judul/Deskripsi di bawahnya */
+.sub-title {
+    font-size: 15px;
+    color: #555555;
+    line-height: 1.6;
+    font-weight: 500;
+    margin-bottom: 35px;
+    max-width: 580px; /* Menjaga teks tidak melar terlalu panjang ke kanan */
+}
+
+/* Wadah Bar Pencarian (Input + Tombol) */
+.search-container {
+    display: flex;
+    gap: 14px;         /* Jarak antara kolom input dan tombol cari */
+    margin-bottom: 35px;
+    max-width: 620px;
+}
+
+/* Kotak Input Abu-abu */
+.search-input-box {
+    display: flex;
+    align-items: center;
+    background-color: #bebebe; /* Abu-abu solid sesuai gambar komponen */
+    padding: 14px 20px;
+    border-radius: 14px;       /* Sudut membulat halus khas Figma */
+    flex: 1;                   /* Memaksa kotak input mengambil sisa ruang */
+    gap: 12px;
+}
+
+/* Teks di dalam Input */
+.search-input-box input {
+    border: none;
+    background: transparent;
+    outline: none;             /* Menghilangkan garis biru saat diklik */
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    width: 100%;
+}
+
+/* Mengatur warna placeholder text "Beasiswa" */
+.search-input-box input::placeholder {
+    color: #555555;
+    opacity: 1;
+}
+
+/* Tombol "Cari" Gelap */
+.btn-search {
+    background-color: #333333; /* Warna charcoal/hitam pekat */
+    color: #ffffff;
+    border: none;
+    padding: 0 32px;
+    border-radius: 14px;       /* Kebulatan disamakan dengan kotak input */
+    font-size: 15px;
+    font-weight: 700;          /* Teks tombol dibuat tebal */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-search:hover {
+    background-color: #1e1e1e; /* Sedikit lebih gelap saat kursor menempel */
+}
+
+/* Judul Kecil Pencarian Populer */
+.popular-tags span {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;          /* Cetak tebal sesuai gambar */
+    color: #333333;
+    margin-bottom: 14px;
+}
+
+/* Kelompok Tombol Tag Pilihan */
+.tags-group {
+    display: flex;
+    gap: 12px;                 /* Jarak antar pil tag */
+}
+
+/* Pil Tag (Beasiswa, UKT, dll) */
+.tag {
+    background-color: #bebebe; /* Warna abu-abu disamakan dengan input box */
+    color: #333333;
+    text-decoration: none;     /* Menghapus garis bawah bawaan link */
+    padding: 10px 24px;
+    border-radius: 10px;       /* Kotak membulat proporsional */
+    font-size: 14px;
+    font-weight: 700;          /* Teks tag tebal */
+    transition: all 0.2s ease;
+}
+
+.tag:hover {
+    background-color: #b0b0b0; /* Efek visual sedikit menggelap saat di-hover */
+}
+
+/* ==========================================================
+   STYLING DETAIL KARTU AGENDA (KANAN)
+   ========================================================== */
+
+/* Wadah Utama Agenda */
+.agenda-card {
+    background-color: #bebebe; /* Warna abu-abu solid sesuai gambar referensi */
+    border-radius: 24px;       /* Sudut kotak lebih membulat halus */
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    color: #333333;
+}
+
+/* Header: Teks Agenda BEM & Tanggal */
+.agenda-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+.agenda-header h3 {
+    font-size: 22px;
+    font-weight: 800; /* Super Bold */
+    color: #333333;
+}
+
+.agenda-date {
+    font-size: 13px;
+    color: #444444;
+    font-weight: 600;
+}
+
+/* Kotak Jam & Ikon Kalender */
+.agenda-time-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.agenda-time-box h2 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #333333;
+    letter-spacing: -1px;
+}
+
+.agenda-time-box h2 span {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+/* Detail Acara & Lokasi */
+.agenda-details h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 4px;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: #555555;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* Wadah Status (Kotak Transparan Bersama) */
+.agenda-status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: rgba(255, 255, 255, 0.25); /* Efek putih transparan */
+    border: 1px solid rgba(255, 255, 255, 0.4);  /* Garis tepi tipis halus */
+    border-radius: 14px;
+    padding: 12px 5px;
+    margin-bottom: 25px;
+}
+
+/* Kolom di dalam Kotak Status */
+.status-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+/* Membuat Garis Pembatas Vertikal di antara kolom status */
+.status-col:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 10%;
+    height: 80%;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.15); /* Garis sekat tipis */
+}
+
+.status-col span {
+    font-size: 11px;
+    color: #444444;
+    font-weight: 700;
+}
+
+/* Badge Pil Kategori (Warna Emas/Khaki) */
+.badge {
+    background-color: #b09a73; /* Warna emas/khaki sesuai gambar */
+    color: #ffffff;
+    text-align: center;
+    width: 85%;                /* Memastikan proporsi pil pas di dalam kolom */
+    padding: 5px 0;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Dimensi halus di dalam badge */
+}
+
+/* Tombol Lihat Kalender Agenda */
+.btn-agenda-calendar {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.35); /* Latar tombol transparan cerah */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 14px 0;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #333333;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    transition: all 0.2s ease;
+}
+
+.btn-agenda-calendar:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* ==========================================================
+   STYLING SEKSI LAYANAN PUBLIK (BAWAH)
+   ========================================================== */
+
+.layanan-section {
+    padding: 20px 0 80px 0;
+    background-color: #ffffff; /* Memastikan latar belakang dasar murni putih */
+}
+
+/* Wadah besar abu-abu tipis pembungkus seluruh layanan */
+.layanan-box {
+    background-color: #e5e5e5; /* Warna abu-abu soft sesuai contoh Figma */
+    border-radius: 24px;       /* Lengkungan sudut kotak besar */
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+
+    /* ==========================================================
+       2. TRIK SAKTI UNTUK MENIMPAL DI ATAS LENGKUNGAN
+       ========================================================== */
+    position: relative;   /* Kunci utama agar browser mau membaca perintah z-index */
+    z-index: 10;          /* Memaksa kotak ini naik ke lapisan layar paling depan */
+    margin-top: -260px;   /* Tarik kotak ke atas sebesar 100px menimpa lengkungan */
+}
+
+.layanan-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #333333;
+    margin-bottom: 4px;
+}
+
+.layanan-subtitle {
+    font-size: 14px;
+    color: #666666;
+    font-weight: 600;
+    margin-bottom: 35px;
+}
+
+/* KUNCI GRID: Otomatis membagi menjadi 3 kolom sama rata */
+.layanan-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Jarak aman antar kartu layanan */
+}
+
+/* Desain Dasaran Kartu Menu */
+.layanan-card {
+    display: block;
+    height: 110px;             /* Tinggi kartu proporsional sesuai gambar */
+    border-radius: 16px;       /* Sudut kartu membulat halus */
+    overflow: hidden;
+    text-decoration: none;     /* Menghilangkan garis bawah link */
+    
+    /* Pengaturan gambar latar belakang */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    
+    /* Efek transisi halus saat disentuh kursor */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efek interaktif ketika kursor user menyentuh kartu */
+.layanan-card:hover {
+    transform: translateY(-3px); /* Kartu sedikit naik ke atas */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* LAPISAN OVERLAY: Berfungsi agar teks putih tetap kontras & mudah dibaca */
+.layanan-overlay {
+    background-color: rgba(0, 0, 0, 0.25); /* Lapisan hitam transparan tipis di atas gambar batik */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+}
+
+.layanan-overlay h3 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan teks halus */
+}
+
+.layanan-overlay p {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* ==========================================================
+   STYLING SLIDER BANNER GAMBAR (BAWAH)
+   ========================================================== */
+.slider-section {
+    padding: 0 0 100px 0; 
+    background-color: #ffffff; /* Latar belakang area putih */
+    display: flex;
+    justify-content: center;
+}
+
+.banner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Wadah utama: Berfungsi memotong slide yang mengantre di kanan-kiri */
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px; /* Sudut membulat halus sesuai foto */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07); /* Bayangan halus */
+}
+
+/* Jalur track tempat berjejernya seluruh gambar slide */
+.carousel-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Efek geser yang smooth */
+}
+
+/* Dekorasi setiap halaman slide (hanya wadah gambar) */
+.carousel-slide {
+    flex: 0 0 100%; /* Memaksa satu slide mengambil 100% lebar container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling Gambar Banner Penuh di dalam slide */
+.banner-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Menjaga proporsi gambar */
+}
+
+/* --- Pengatur Jarak & Tampilan Indikator Titik (Dots) --- */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #b5b5b5;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Efek saat titik aktif (berubah warna menjadi gelap dan agak memanjang) */
+.dot.active {
+    background-color: #333333;
+    width: 20px;
+    border-radius: 4px;
+}
+
+/* ==========================================================
+   STYLING DROPDOWN PILIHAN BAHASA (NAVBAR)
+   ========================================================== */
+.lang-switcher {
+    position: relative; 
+}
+
+/* Mengatur warna dan ukuran ikon globe baru */
+.lang-icon {
+    width: 16px;
+    height: 16px;
+    stroke: #ffffff; /* Mengikuti warna teks putih */
+    display: inline-block;
+}
+
+.lang-dropdown {
+    display: none;             
+    position: absolute;
+    top: 100%;                 
+    right: 0;
+    background-color: #2c3e50; 
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    min-width: 140px;
+    padding: 6px 0;
+    list-style: none;
+    z-index: 2000;             
+    
+    /* KUNCI UTAMA: Memaksa isi dropdown berjejer ke bawah jika terpicu flex */
+    flex-direction: column; 
+}
+
+.lang-dropdown li {
+    margin-left: 0 !important; 
+    width: 100%;
+}
+
+.lang-dropdown a {
+    display: block;
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+    font-weight: 600;
+    color: #ffffff;
+    border-radius: 0px !important; 
+}
+
+.lang-dropdown a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #3498db !important;
+}
+
+/* Mengubah display menjadi flex saat di-hover agar flex-direction bekerja */
+.lang-switcher:hover .lang-dropdown {
+    display: flex;
+}
+
+/* ==========================================================
+   CSS HACK PRO: MEMBERSIHKAN TOTAL ATRIBUT GOOGLE TRANSLATE
+   ========================================================== */
+
+/* 1. Paksa Iframe Google Translate Bar untuk Hilang Gaib */
+iframe.goog-te-banner-frame,
+.goog-te-banner-frame,
+.goog-te-banner,
+.skiptranslate {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* 2. Normalkan Kembali Struktur Atas Halaman (Nuke Layout Shift) */
+html {
+    top: 0 !important;
+}
+
+body {
+    top: 0 !important;
+    position: static !important;
+}
+
+/* 3. Sembunyikan Kotak Pilihan Asli Google yang Kita Lempar Keluar Layar */
+#google_translate_element {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -9999;
+    top: -1000px;
+}
+
+/* 4. Sembunyikan Tooltip Popup Kuning Saat Teks Dihover Kursor */
+.goog-tooltip, 
+.goog-tooltip:hover {
+    display: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* 5. Hilangkan Efek Stabilo Kuning pada Teks yang Berhasil Diterjemahkan */
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    box-sizing: border-box;
+}

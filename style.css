@@ -8,7 +8,7 @@
 
 /* WADAH GLOBAL UNTUK KONTEN WEBSITE */
 .container {
-    width: 95%;           
+    width: 92%;           
     max-width: 1440px;    
     margin: 0 auto;       /* Kunci posisi selalu di tengah layar */
 }
@@ -40,7 +40,7 @@
 }
 
 .main-logo {
-    height: 45px; 
+    height: 41px; 
     width: auto;  
 }
 
@@ -59,9 +59,9 @@
 .navbar a {
     color: #ffffff; /* Ubah ke #064e70 jika nanti background header diganti putih */
     text-decoration: none; 
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600; /* Menggunakan semi-bold agar ikon dan teks seimbang */
-    padding: 8px 12px;
+    padding: 8px 8px;
     display: flex;         /* Membuat teks dan ikon berdampingan */
     align-items: center;   /* Membuat teks dan ikon lurus vertikal */
     gap: 6px;              /* Jarak antara teks menu dan ikon panah */
@@ -113,6 +113,17 @@ body {
     background-color: #ffffff; /* Warna putih solid sesuai gambar referensi */
 }
 
+/* ==========================================================
+   TRIK SAKTI: MEMBUAT SEKSI HERO & AGENDA MENJOROK KE TENGAH
+   ========================================================== */
+
+/* Targetkan container yang BERADA DI DALAM .content saja */
+.content > .container {
+    max-width: 1200px; /* Perkecil nilai ini (misal dari 1440px ke 1200px atau 1150px) */
+    width: 85%;        /* Memberikan ruang kosong (padding) otomatis di kiri dan kanan */
+    margin: 0 auto;    /* Kunci posisi agar wadah yang menyempit ini tetap presisi di tengah monitor */
+}
+
 /* --- STYLING 1: PENGUMUMAN BERJALAN --- */
 .ticker-wrapper {
     background-color: #005b7f; 
@@ -122,13 +133,13 @@ body {
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 40px;
-    max-width: 620px; /* Mengunci lebar bar agar sama dengan panjang pencarian & judul */
+    max-width: 550px; /* Mengunci lebar bar agar sama dengan panjang pencarian & judul */
 }
 
 .ticker-title {
     background-color: #004662; 
-    padding: 10px 20px;
-    font-weight: 700;
+    padding: 8px 12px;
+    font-weight: 600;
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -138,14 +149,14 @@ body {
 .ticker-text {
     flex: 1;
     padding: 0 2px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 400;
 }
 
 /* STYLING BARU UNTUK IKON ASSETS */
 .ticker-icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     display: inline-block;
 }
 
@@ -182,11 +193,11 @@ body {
 
 /* Judul Utama: Dibuat lebih tegas dan tebal */
 .main-title {
-    font-size: 38px;
+    font-size: 35px;
     color: #333333; /* Warna abu-abu sangat gelap sesuai Figma */
     font-weight: 800; /* Tebal maksimal agar dominan */
     line-height: 1.25;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     letter-spacing: -0.5px;
 }
 
@@ -197,15 +208,15 @@ body {
     line-height: 1.6;
     font-weight: 500;
     margin-bottom: 35px;
-    max-width: 580px; /* Menjaga teks tidak melar terlalu panjang ke kanan */
+    max-width: 500px; /* Menjaga teks tidak melar terlalu panjang ke kanan */
 }
 
 /* Wadah Bar Pencarian (Input + Tombol) */
 .search-container {
     display: flex;
-    gap: 14px;         /* Jarak antara kolom input dan tombol cari */
+    gap: 10px;         /* Jarak antara kolom input dan tombol cari */
     margin-bottom: 35px;
-    max-width: 620px;
+    max-width: 550px;
 }
 
 /* Kotak Input Abu-abu */
@@ -213,7 +224,7 @@ body {
     display: flex;
     align-items: center;
     background-color: #bebebe; /* Abu-abu solid sesuai gambar komponen */
-    padding: 14px 20px;
+    padding: 12px 15px;
     border-radius: 14px;       /* Sudut membulat halus khas Figma */
     flex: 1;                   /* Memaksa kotak input mengambil sisa ruang */
     gap: 12px;
@@ -224,8 +235,8 @@ body {
     border: none;
     background: transparent;
     outline: none;             /* Menghilangkan garis biru saat diklik */
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     color: #333333;
     width: 100%;
 }
@@ -241,10 +252,10 @@ body {
     background-color: #333333; /* Warna charcoal/hitam pekat */
     color: #ffffff;
     border: none;
-    padding: 0 32px;
+    padding: 0 25px;
     border-radius: 14px;       /* Kebulatan disamakan dengan kotak input */
-    font-size: 15px;
-    font-weight: 700;          /* Teks tombol dibuat tebal */
+    font-size: 14px;
+    font-weight: 500;          /* Teks tombol dibuat tebal */
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
@@ -257,7 +268,7 @@ body {
 .popular-tags span {
     display: block;
     font-size: 15px;
-    font-weight: 800;          /* Cetak tebal sesuai gambar */
+    font-weight: 600;          /* Cetak tebal sesuai gambar */
     color: #333333;
     margin-bottom: 14px;
 }
@@ -265,7 +276,7 @@ body {
 /* Kelompok Tombol Tag Pilihan */
 .tags-group {
     display: flex;
-    gap: 12px;                 /* Jarak antar pil tag */
+    gap: 10px;                 /* Jarak antar pil tag */
 }
 
 /* Pil Tag (Beasiswa, UKT, dll) */
@@ -273,11 +284,24 @@ body {
     background-color: #bebebe; /* Warna abu-abu disamakan dengan input box */
     color: #333333;
     text-decoration: none;     /* Menghapus garis bawah bawaan link */
-    padding: 10px 24px;
+    padding: 9px 15px;
     border-radius: 10px;       /* Kotak membulat proporsional */
     font-size: 14px;
-    font-weight: 700;          /* Teks tag tebal */
+    font-weight: 600;          /* Teks tag tebal */
     transition: all 0.2s ease;
+    /* ==========================================================
+       TAMBAHKAN 3 BARIS INI UNTUK MENGAKTIFKAN STRUKTUR IKON
+       ========================================================== */
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;                  /* Mengatur jarak renggang antara teks dan ikon panah */
+}
+
+/* Tambahkan selector baru ini untuk mengunci dimensi ukuran ikon asetmu */
+.tag-icon {
+    width: 15px;               /* Ukuran ideal yang proporsional dengan font-size 14px */
+    height: 15px;
+    display: inline-block;
 }
 
 .tag:hover {
@@ -292,7 +316,7 @@ body {
 .agenda-card {
     background-color: #bebebe; /* Warna abu-abu solid sesuai gambar referensi */
     border-radius: 24px;       /* Sudut kotak lebih membulat halus */
-    padding: 30px;
+    padding: 25px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     color: #333333;
 }
@@ -306,15 +330,15 @@ body {
 }
 
 .agenda-header h3 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800; /* Super Bold */
     color: #333333;
 }
 
 .agenda-date {
-    font-size: 13px;
+    font-size: 14px;
     color: #444444;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 /* Kotak Jam & Ikon Kalender */
@@ -333,15 +357,15 @@ body {
 }
 
 .agenda-time-box h2 span {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    margin-left: 5px;
+    margin-left: 0px;
 }
 
 /* Detail Acara & Lokasi */
 .agenda-details h4 {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 600;
     color: #333333;
     margin-bottom: 4px;
 }
@@ -352,8 +376,8 @@ body {
     gap: 5px;
     font-size: 13px;
     color: #555555;
-    font-weight: 600;
-    margin-bottom: 25px;
+    font-weight: 500;
+    margin-bottom: 20px;
 }
 
 /* Wadah Status (Kotak Transparan Bersama) */
@@ -363,7 +387,7 @@ body {
     background-color: rgba(255, 255, 255, 0.25); /* Efek putih transparan */
     border: 1px solid rgba(255, 255, 255, 0.4);  /* Garis tepi tipis halus */
     border-radius: 14px;
-    padding: 12px 5px;
+    padding: 8px 3px;
     margin-bottom: 25px;
 }
 
@@ -372,7 +396,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     position: relative;
 }
 
@@ -401,8 +425,8 @@ body {
     width: 85%;                /* Memastikan proporsi pil pas di dalam kolom */
     padding: 5px 0;
     border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 500;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Dimensi halus di dalam badge */
 }
 
@@ -411,10 +435,10 @@ body {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.35); /* Latar tombol transparan cerah */
     border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 14px 0;
+    padding: 11px 0;
     border-radius: 14px;
-    font-size: 15px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 800;
     color: #333333;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.02);
@@ -427,76 +451,58 @@ body {
 }
 
 /* ==========================================================
-   STYLING SEKSI LAYANAN PUBLIK (BAWAH)
+   STYLING SEKSI LAYANAN PUBLIK (BAWAH) - UPDATED WITH ARROW ANIMATION
    ========================================================== */
 
 .layanan-section {
-    padding: 20px 0 80px 0;
-    background-color: #ffffff; /* Memastikan latar belakang dasar murni putih */
+    padding: 35px 0 80px 0;
+    background-color: #ffffff; 
 }
 
-/* Wadah besar abu-abu tipis pembungkus seluruh layanan */
 .layanan-box {
-    background-color: #e5e5e5; /* Warna abu-abu soft sesuai contoh Figma */
-    border-radius: 24px;       /* Lengkungan sudut kotak besar */
+    background-color: #e5e5e5; 
+    border-radius: 24px;       
     padding: 40px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-
-    /* ==========================================================
-       2. TRIK SAKTI UNTUK MENIMPAL DI ATAS LENGKUNGAN
-       ========================================================== */
-    position: relative;   /* Kunci utama agar browser mau membaca perintah z-index */
-    z-index: 10;          /* Memaksa kotak ini naik ke lapisan layar paling depan */
-    margin-top: -260px;   /* Tarik kotak ke atas sebesar 100px menimpa lengkungan */
+    position: relative;   
+    z-index: 10;          
+    margin-top: -300px;   
 }
 
 .layanan-title {
     font-size: 32px;
     font-weight: 800;
     color: #333333;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .layanan-subtitle {
     font-size: 14px;
     color: #666666;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 35px;
 }
 
-/* KUNCI GRID: Otomatis membagi menjadi 3 kolom sama rata */
 .layanan-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px; /* Jarak aman antar kartu layanan */
+    gap: 20px; 
 }
 
-/* Desain Dasaran Kartu Menu */
 .layanan-card {
     display: block;
-    height: 110px;             /* Tinggi kartu proporsional sesuai gambar */
-    border-radius: 16px;       /* Sudut kartu membulat halus */
+    height: 110px;             
+    border-radius: 16px;       
     overflow: hidden;
-    text-decoration: none;     /* Menghilangkan garis bawah link */
-    
-    /* Pengaturan gambar latar belakang */
+    text-decoration: none;     
     background-size: cover;
     background-position: center;
-    position: relative;
-    
-    /* Efek transisi halus saat disentuh kursor */
+    position: relative; /* Menjadi jangkar utama bagi .layanan-arrow-icon */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Efek interaktif ketika kursor user menyentuh kartu */
-.layanan-card:hover {
-    transform: translateY(-3px); /* Kartu sedikit naik ke atas */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* LAPISAN OVERLAY: Berfungsi agar teks putih tetap kontras & mudah dibaca */
 .layanan-overlay {
-    background-color: rgba(0, 0, 0, 0.25); /* Lapisan hitam transparan tipis di atas gambar batik */
+    background-color: rgba(0, 0, 0, 0.25); 
     width: 100%;
     height: 100%;
     display: flex;
@@ -507,20 +513,34 @@ body {
     padding: 15px;
 }
 
-.layanan-overlay h3 {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    margin-bottom: 4px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan teks halus */
+/* ==========================================================
+   PERBAIKAN FINAL: HANYA LINGKARAN YANG AKTIF & BISA DIKLIK
+   ========================================================== */
+
+/* 1. Wadah Link (Ukurannya kita kunci pas seukuran bulatan panah) */
+.layanan-arrow-link {
+    position: absolute;    /* Melayang bebas di atas banner */
+    right: 20px;           /* Jarak dari tepi kanan banner */
+    bottom: 35px;          /* Jarak dari tepi bawah banner */
+    width: 35px;           /* Lebar area klik */
+    height: 35px;          /* Tinggi area klik */
+    z-index: 15;           /* Berdiri di lapisan paling depan agar tidak tertutup overlay */
+    display: inline-block; 
 }
 
-.layanan-overlay p {
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 500;
-    opacity: 0.9;
+/* 2. Desain Gambar Ikon di Dalam Link */
+.layanan-arrow-icon {
+    width: 100%;           /* Mengikuti 100% dari lebar .layanan-arrow-link (36px) */
+    height: 100%;          /* Mengikuti 100% dari tinggi .layanan-arrow-link (36px) */
+    opacity: 0.75;         /* Efek transparan halus saat diam */
+    display: block;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* Transisi smooth */
+}
+
+/* 3. Efek Hover (Hanya terpicu ketika kursor menyentuh TEPAT di area lingkaran) */
+.layanan-arrow-link:hover .layanan-arrow-icon {
+    opacity: 1;                            /* Menjadi terang solid */
+    transform: scale(1.15) translateX(4px); /* Lingkaran membesar dan meluncur ke kanan */
 }
 
 /* ==========================================================
@@ -543,30 +563,60 @@ body {
 .carousel-wrapper {
     width: 100%;
     overflow: hidden;
-    border-radius: 20px; /* Sudut membulat halus sesuai foto */
+    border-radius: 10px; /* Sudut membulat halus sesuai foto */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07); /* Bayangan halus */
+    /* ==========================================================
+       TAMBAHKAN BARIS INI (PILIH SALAH SATU YANG PALING PAS)
+       ========================================================== */
+    min-height: 280px; /* Atur angka ini sesuai tinggi rata-rata gambar bannermu */
 }
 
 /* Jalur track tempat berjejernya seluruh gambar slide */
 .carousel-track {
     display: flex;
-    width: 100%;
+    width: 75%;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Efek geser yang smooth */
 }
 
-/* Dekorasi setiap halaman slide (hanya wadah gambar) */
+/* ==========================================================
+   PERBAIKAN TINGKAT TINGGI: KOTAK GANTUNG DENGAN SHADOW & 4 SUDUT MELENGKUNG
+   ========================================================== */
+
+/* Kotak Luar: Sekarang bersih, cuma jadi pengatur jarak untuk JavaScript */
 .carousel-slide {
     flex: 0 0 100%; /* Memaksa satu slide mengambil 100% lebar container */
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;       /* Kunci utama sebagai jangkar kartu gaib */
+    box-sizing: border-box;
+
+    /* --- PENGAMAN --- */
+    background: transparent !important; /* Hapus background lama agar tidak meluber */
+    padding-right: 30px;                /* Geser teks/konten ke kiri agar pas di tengah kartu */
+}
+
+/* KARTU GAIB: Tempat murni warna, kelengkungan, dan shadow */
+.carousel-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 30px;             /* KUNCI GAP: Menyisakan ruang kosong 20px di sebelah kanan */
+    
+    background-color: #b0a483; /* Warna khaki/cokelat bawaan kamu */
+    border-radius: 10px;       /* Keempat sudut dijamin bulat sempurna murni! */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Bayangan kotak individual yang lebih terasa */
+    z-index: -1;               /* Selipkan kartu di belakang teks/konten agar teks tidak tertutup */
 }
 
 /* Styling Gambar Banner Penuh di dalam slide */
 .banner-image {
     width: 100%;
-    height: auto;
-    object-fit: cover; /* Menjaga proporsi gambar */
+    height: 100%;       /* Ubah dari auto ke 100% agar mengisi penuh ruang min-height */
+    object-fit: cover;  /* Menjaga proporsi gambar agar tidak gepeng */
+    border-radius: 10px; /* Kebulatan sudut disamakan dengan kartu gaib */
 }
 
 /* --- Pengatur Jarak & Tampilan Indikator Titik (Dots) --- */
@@ -694,4 +744,392 @@ body {
     background-color: transparent !important;
     box-shadow: none !important;
     box-sizing: border-box;
+}
+
+/* ==========================================================
+   STYLING SEKSI KABAR BEM / BERITA
+   ========================================================== */
+.kabar-section {
+    background-color: #e0e0e0; /* Menggunakan warna abu-abu solid sesuai contoh komponen */
+    padding: 64px 0;           /* Memberikan ruang vertikal atas-bawah yang luas & ideal */
+}
+
+/* Tata Letak Atas: Membuat judul berjejer ke samping */
+.kabar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;       /* Jarak aman ke grid kartu di bawahnya */
+}
+
+.kabar-title-group {
+    display: flex;
+    align-items: baseline;     /* Memastikan baris bawah teks h2 dan p lurus sejajar */
+    gap: 24px;                 /* Jarak spasi antara Judul dengan Sub-judul */
+}
+
+.kabar-title-group h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #333333;
+}
+
+.kabar-title-group p {
+    font-size: 14px;
+    color: #555555;
+    font-weight: 600;
+}
+
+/* Link "Lihat Selengkapnya" di Sisi Kanan */
+.btn-see-all {
+    font-size: 14px;
+    font-weight: 700;
+    color: #005b7f;            /* Warna biru khas identitas kabinet */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.btn-see-all:hover {
+    color: #004662;            /* Sedikit menggelap saat disorot kursor */
+}
+
+/* SISTEM GRID: Membagi rata menjadi 3 kolom berita */
+.kabar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;                 /* Jarak renggang antar kartu agar terlihat profesional */
+}
+
+/* Struktur Kerangka Kartu */
+.kabar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;                 /* Jarak konsisten antara Gambar -> Teks -> Footer */
+}
+
+/* Pembungkus Gambar untuk Efek Crop */
+.kabar-img-wrapper {
+    width: 100%;
+    height: 190px;             /* Mengunci tinggi gambar agar barisan kartu selalu rata & simetris */
+    border-radius: 16px;       /* Kebulatan sudut foto sesuai gambar referensi */
+    overflow: hidden;
+}
+
+.kabar-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* Memotong gambar secara proporsional agar tidak gepeng */
+    transition: transform 0.3s ease;
+}
+
+/* Efek mikro-interaksi saat kartu disentuh */
+.kabar-card:hover .kabar-img-wrapper img {
+    transform: scale(1.04);    /* Efek zoom-in gambar yang halus dan elegan */
+}
+
+/* Teks Deskripsi Berita */
+.kabar-excerpt {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    line-height: 1.5;
+    
+    /* Batasan Otomatis: Memaksa teks berhenti di baris ke-3 jika terlalu panjang */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Bagian Informasi Bawah Kartu */
+.kabar-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;          /* Memaksa info footer selalu menempel di dasar bawah kartu */
+}
+
+/* Badge Topik Berita (Khaki/Emas) */
+.kabar-badge {
+    background-color: #b09a73; /* Warna emas/khaki disamakan dengan tema agenda */
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 6px;        
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Teks Tanggal & Waktu */
+.kabar-date {
+    font-size: 12px;
+    color: #555555;
+    font-weight: 600;
+}
+
+/* ==========================================================
+   STYLING SEKSI PENGUMUMAN FILE / LAMPIRAN
+   ========================================================== */
+.file-section {
+    background-color: #e0e0e0; /* Selaras dengan abu-abu seksi berita */
+    padding: 0 0 64px 0;        /* Atasnya 0 karena menyambung dari bawah seksi berita */
+}
+
+.file-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.file-title-group {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+}
+
+.file-title-group h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #333333;
+}
+
+.file-title-group p {
+    font-size: 14px;
+    color: #555555;
+    font-weight: 600;
+}
+
+.file-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.file-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Wadah tempat ikon dokumen besar berada (Putih Bersih) */
+.file-thumb-wrapper {
+    width: 100%;
+    height: 190px;
+    background-color: #ffffff; /* Sesuai contoh fotomu yang berlatar putih/terang */
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease;
+}
+
+.file-card:hover .file-thumb-wrapper {
+    transform: translateY(-3px); /* Memberikan efek interaktif memantul ke atas */
+}
+
+/* Ukuran & warna siluet ikon dokumen utama */
+.big-doc-icon {
+    width: 70px;
+    height: 70px;
+    stroke: #333333;
+}
+
+.file-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #333333;
+    line-height: 1.3;
+}
+
+.file-excerpt {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555555;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Wadah tombol aksi di bawah */
+.file-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: auto; /* Memastikan barisan tombol selalu sejajar rata di paling bawah */
+}
+
+/* Styling Tombol Khaki/Emas Khas Desainmu */
+.btn-file-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #b09a73; /* Warna khaki seragam dengan badge agenda */
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background-color 0.2s ease;
+}
+
+.btn-file-action:hover {
+    background-color: #9c8763; /* Sedikit menggelap saat disentuh kursor */
+}
+
+/* Ukuran ikon di dalam tombol file */
+.btn-file-action svg {
+    width: 14px;
+    height: 14px;
+    stroke: #ffffff;
+    fill: none;
+}
+
+/* ==========================================================
+   STYLING SEKSI GALERI FOTO (FOCUS CENTER EFFECT)
+   ========================================================== */
+.galeri-section {
+    background-color: #004e70; /* Warna biru gelap sesuai identitas BEM Fapet */
+    padding: 64px 0;
+    overflow: hidden;
+}
+
+.galeri-main-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff5e6;            /* Warna cream lembut sesuai gambar contoh */
+    margin-bottom: 40px;
+}
+
+/* Container utama pembungkus track dan tombol panah */
+.galeri-slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 16px;
+}
+
+/* Jendela pemotong sisa gambar luar agar tidak meluber */
+.galeri-wrapper {
+    width: 85%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+/* Rel horizontal tempat berjejer posisi gambar */
+.galeri-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+/* Pengaturan default untuk seluruh halaman slide */
+.galeri-slide {
+    flex: 0 0 55%;             /* Lebar fokus gambar utama di tengah layar */
+    display: flex;
+    justify-content: center;
+    opacity: 0.35;             /* Meredupkan gambar antrean di kanan-kiri */
+    transform: scale(0.85);    /* Mengecilkan gambar antrean */
+    transition: all 0.5s ease;
+}
+
+/* ATURAN EMAS: Ketika slide berstatus AKTIF di tengah */
+.galeri-slide.active {
+    opacity: 1;                /* Menjadi terang benderang */
+    transform: scale(1);       /* Membesar ke ukuran aslinya */
+}
+
+/* Kotak frame pembungkus gambar */
+.galeri-card-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.galeri-card-box img {
+    width: 100%;
+    height: 340px;             /* Mengunci tinggi box foto agar proporsional */
+    object-fit: cover;
+    border-radius: 16px;       
+    border: 3px solid #fff5e6; /* Frame warna cream tipis sesuai foto contoh */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Area Deskripsi Teks di bawah foto */
+.galeri-caption {
+    text-align: center;
+    color: #ffffff;
+    margin-top: 24px;
+    max-width: 80%;
+    opacity: 0;                /* Disembunyikan secara default saat di samping */
+    display: none;
+    transition: opacity 0.4s ease;
+}
+
+/* Hanya tampilkan teks deskripsi milik gambar yang sedang aktif di tengah */
+.galeri-slide.active .galeri-caption {
+    display: block;
+    opacity: 1;
+}
+
+.galeri-caption p {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.galeri-time {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+}
+
+/* --- Tombol Navigasi Panah Kanan-Kiri --- */
+.galeri-nav-btn {
+    background: transparent;
+    border: none;
+    color: #fff5e6;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 100;
+    transition: transform 0.2s;
+}
+
+.galeri-nav-btn:hover {
+    transform: scale(1.2);
+}
+
+.galeri-nav-btn svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* --- Indikator Titik Bawah --- */
+.galeri-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+
+.g-dot {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.g-dot.active {
+    background-color: #fff5e6;
+    width: 24px;
+    border-radius: 4px;
 }

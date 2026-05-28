@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin</title>
+
+    <script>
+        const statusLogin = sessionStorage.getItem("isLoggedIn");
+        if (statusLogin !== "true") {
+            // Jika ilegal, keluar folder admin (../) lalu masuk ke folder login
+            window.location.href = "../login/"; 
+        }
+    </script>
+
+    <link rel="stylesheet" href="../style-admin.css"> 
+</head>
+<body>
+    <h1>Selamat Datang Admin, Ini Menu Rahasia BEM</h1>
+</body>
+</html>

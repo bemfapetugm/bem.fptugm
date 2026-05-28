@@ -466,7 +466,8 @@ body {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
     position: relative;   
     z-index: 10;          
-    margin-top: -300px;   
+    margin-top: -300px;
+    margin-bottom: 20px;
 }
 
 .layanan-title {
@@ -491,8 +492,8 @@ body {
 
 .layanan-card {
     display: block;
-    height: 110px;             
-    border-radius: 16px;       
+    height: 130px;             
+    border-radius: 10px;       
     overflow: hidden;
     text-decoration: none;     
     background-size: cover;
@@ -521,7 +522,7 @@ body {
 .layanan-arrow-link {
     position: absolute;    /* Melayang bebas di atas banner */
     right: 20px;           /* Jarak dari tepi kanan banner */
-    bottom: 35px;          /* Jarak dari tepi bawah banner */
+    bottom: 45px;          /* Jarak dari tepi bawah banner */
     width: 35px;           /* Lebar area klik */
     height: 35px;          /* Tinggi area klik */
     z-index: 15;           /* Berdiri di lapisan paling depan agar tidak tertutup overlay */
@@ -548,7 +549,7 @@ body {
    ========================================================== */
 .slider-section {
     padding: 0 0 100px 0; 
-    background-color: #ffffff; /* Latar belakang area putih */
+    background-color: #ffffff; 
     display: flex;
     justify-content: center;
 }
@@ -559,67 +560,67 @@ body {
     align-items: center;
 }
 
-/* Wadah utama: Berfungsi memotong slide yang mengantre di kanan-kiri */
+/* Wadah utama */
 .carousel-wrapper {
     width: 100%;
     overflow: hidden;
-    border-radius: 10px; /* Sudut membulat halus sesuai foto */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07); /* Bayangan halus */
-    /* ==========================================================
-       TAMBAHKAN BARIS INI (PILIH SALAH SATU YANG PALING PAS)
-       ========================================================== */
-    min-height: 280px; /* Atur angka ini sesuai tinggi rata-rata gambar bannermu */
+    border-radius: 10px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07); 
+    
+    /* SYNC: Samakan dengan tinggi slide (310px) agar pembungkusnya kokoh */
+    height: 310px; 
 }
 
 /* Jalur track tempat berjejernya seluruh gambar slide */
 .carousel-track {
     display: flex;
     width: 75%;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Efek geser yang smooth */
+    height: 100%; /* Tambahkan ini agar track mengisi penuh tinggi wrapper */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
 }
 
-/* ==========================================================
-   PERBAIKAN TINGKAT TINGGI: KOTAK GANTUNG DENGAN SHADOW & 4 SUDUT MELENGKUNG
-   ========================================================== */
-
-/* Kotak Luar: Sekarang bersih, cuma jadi pengatur jarak untuk JavaScript */
+/* Kotak Luar */
 .carousel-slide {
-    flex: 0 0 100%; /* Memaksa satu slide mengambil 100% lebar container */
+    flex: 0 0 100%; 
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;       /* Kunci utama sebagai jangkar kartu gaib */
+    position: relative;       
     box-sizing: border-box;
-
-    /* --- PENGAMAN --- */
-    background: transparent !important; /* Hapus background lama agar tidak meluber */
-    padding-right: 30px;                /* Geser teks/konten ke kiri agar pas di tengah kartu */
+    background: transparent !important; 
+    padding-right: 30px;                
+    height: 100%; /* Ubah menjadi 100% mengikuti tinggi track induknya */
+    z-index: 1;
+    cursor: pointer;
 }
 
-/* KARTU GAIB: Tempat murni warna, kelengkungan, dan shadow */
+/* KARTU GAIB */
 .carousel-slide::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
-    right: 30px;             /* KUNCI GAP: Menyisakan ruang kosong 20px di sebelah kanan */
-    
-    background-color: #b0a483; /* Warna khaki/cokelat bawaan kamu */
-    border-radius: 10px;       /* Keempat sudut dijamin bulat sempurna murni! */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Bayangan kotak individual yang lebih terasa */
-    z-index: -1;               /* Selipkan kartu di belakang teks/konten agar teks tidak tertutup */
+    right: 30px;             
+    background-color: #b0a483; 
+    border-radius: 10px;       
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+    z-index: -1;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), filter 0.2s ease, box-shadow 0.2s ease;               
 }
 
-/* Styling Gambar Banner Penuh di dalam slide */
+/* Styling Gambar Banner */
 .banner-image {
     width: 100%;
-    height: 100%;       /* Ubah dari auto ke 100% agar mengisi penuh ruang min-height */
-    object-fit: cover;  /* Menjaga proporsi gambar agar tidak gepeng */
-    border-radius: 10px; /* Kebulatan sudut disamakan dengan kartu gaib */
+    height: 100%;       
+    object-fit: cover;  
+    border-radius: 10px; 
+    position: relative;
+    z-index: 1;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* --- Pengatur Jarak & Tampilan Indikator Titik (Dots) --- */
+/* --- Dots (Tetap Sama) --- */
 .carousel-dots {
     display: flex;
     justify-content: center;
@@ -636,11 +637,30 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Efek saat titik aktif (berubah warna menjadi gelap dan agak memanjang) */
 .dot.active {
     background-color: #333333;
     width: 20px;
     border-radius: 4px;
+}
+
+/* ==========================================================
+   KODE BARU: EFEK INTERAKSI HOVER & KLIK MEMBAL
+   ========================================================== */
+
+/* Efek Hover: Kartu gaib sedikit menggelap saat didekati mouse */
+.carousel-slide:hover::before {
+    filter: brightness(0.95);
+}
+
+/* Efek Klik: Kartu gaib mengecil dan bayangan merapat ke bawah */
+.carousel-slide.clicked::before {
+    transform: scale(0.97); /* Mengecil 3% untuk efek ditekan */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Gambar di dalamnya ikut mengecil serasi saat diklik */
+.carousel-slide.clicked .banner-image {
+    transform: scale(0.97);
 }
 
 /* ==========================================================

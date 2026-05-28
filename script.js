@@ -1,5 +1,5 @@
 // ==========================================================
-// 1. KODE PENGGERAK SLIDER BANNER GAMBAR
+// 1. KODE PENGGERAK SLIDER BANNER GAMBAR (DOUBLE CLONE SYSTEM)
 // ==========================================================
 const track = document.querySelector('.carousel-track');
 const slides = document.querySelectorAll('.carousel-slide');
@@ -7,36 +7,85 @@ const dots = document.querySelectorAll('.dot');
 
 if (track && slides.length > 0) {
     let currentIndex = 0;
-    const totalSlides = slides.length;
+    const totalSlides = slides.length; // Jumlah asli (3)
     const duration = 4000; 
+    let sliderInterval;
 
+    // 🔥 KUNCI UTAMA: Kloning Slide 1 DAN Slide 2 ke ujung akhir rel
     const firstClone = slides[0].cloneNode(true);
+    const secondClone = slides[1].cloneNode(true);
     track.appendChild(firstClone);
+    track.appendChild(secondClone);
 
     function geserSlide() {
         currentIndex++;
         track.style.transition = "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
         
+        // Atur navigasi titik (dots) agar tidak eror saat di slide kloningan
         dots.forEach(dot => dot.classList.remove('active'));
+        let dotIndex = currentIndex;
         if (currentIndex === totalSlides) {
-            if (dots[0]) dots[0].classList.add('active');
-        } else {
-            if (dots[currentIndex]) dots[currentIndex].classList.add('active');
+            dotIndex = 0; // Kloning Slide 1 menggunakan dot index 0
         }
+        if (dots[dotIndex]) dots[dotIndex].classList.add('active');
     }
 
-    track.addEventListener('transitionend', () => {
+    // TELEPORTASI GAIB: Terjadi tepat setelah animasi geser ke Kloning Slide 1 SELESAI
+    track.addEventListener('transitionend', (e) => {
+        // Filter khusus agar hanya memproses transisi geser rel utama
+        if (e.target !== track || e.propertyName !== 'transform') return;
+
+        // Jika sudah mentok di Kloning Slide 1 (posisi mirip slide 1 asli)
         if (currentIndex === totalSlides) {
-            track.style.transition = "none"; 
+            track.style.transition = "none"; // Matikan animasi instan
             currentIndex = 0;
-            track.style.transform = `translateX(0%)`; 
+            track.style.transform = `translateX(0%)`; // Kembalikan ke Slide 1 asli secara kasat mata
         }
     });
 
-    setInterval(geserSlide, duration);
-}
+    // Jalankan & Pengaman Tab Browser
+    function mulaiSlider() {
+        clearInterval(sliderInterval);
+        sliderInterval = setInterval(geserSlide, duration);
+    }
 
+    function stopSlider() {
+        clearInterval(sliderInterval);
+    }
+
+    mulaiSlider();
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopSlider();
+        } else {
+            mulaiSlider();
+        }
+    });
+
+    // ==========================================================
+    // LOGIKA INTERAKSI KLIK & ANIMASI REDIRECT Halaman
+    // ==========================================================
+    track.addEventListener('click', (e) => {
+        // Cari elemen .carousel-slide terdekat dari posisi yang diklik mouse
+        const slideAktif = e.target.closest('.carousel-slide');
+        
+        // Jika yang diklik bukan area slide atau tidak punya data-link, batalkan
+        if (!slideAktif) return;
+        const linkTujuan = slideAktif.getAttribute('data-link');
+        if (!linkTujuan) return;
+
+        // 1. Jalankan animasi klik dengan memicu class di CSS
+        slideAktif.classList.add('clicked');
+
+        // 2. Beri jeda waktu 200 milidetik (0.2 detik)
+        // Tujuan: Agar mata user sempat melihat animasi boksnya mengecil/membal dulu, baru pindah halaman
+        setTimeout(() => {
+            window.location.href = linkTujuan;
+        }, 200);
+    });
+}
 
 // ==========================================================
 // 2. LOGIKA PENUKAR BAHASA VIA LOCALSTORAGE

@@ -132,32 +132,40 @@ function buatCookie(nama, nilai, hari) {
 
 
 // ==========================================================
-// 3. LOGIKA CAROUSEL GALERI FOTO (DOUBLE INFINITE CLONE)
+// 3. LOGIKA CAROUSEL GALERI FOTO (FULLY DYNAMIC MULTI-SLIDE)
 // ==========================================================
 const gTrack = document.querySelector('.galeri-track');
 let gSlides = document.querySelectorAll('.galeri-slide'); 
 const gDots = document.querySelectorAll('.galeri-dots .g-dot');
-const gWrapper = document.querySelector('.galeri-wrapper'); // OPTIMASI: Ditarik ke global
+const gWrapper = document.querySelector('.galeri-wrapper'); 
 const btnPrevGaleri = document.getElementById('galeri-prev');
 const btnNextGaleri = document.getElementById('galeri-next');
 
-// PENGAMAN MULTI-PAGE: Hanya jalan jika elemen galeri lengkap ada di halaman tersebut
 if (gTrack && gSlides.length > 0 && gWrapper && btnPrevGaleri && btnNextGaleri) {
+    // Otomatis membaca jumlah asli berdasarkan jumlah dots di HTML (sekarang = 5)
     const gTotalOriginal = gDots.length; 
     let gTimer;
     let isTransitioning = false; 
 
-    // --- PROSES KLONING GAIB (DUAL SIDE) ---
-    const firstClone = gSlides[0].cloneNode(true);
-    const lastClone = gSlides[gSlides.length - 1].cloneNode(true);
+    // --- 1. PROSES KLONING OTOMATIS BERDASARKAN INDEKS (ANTI-BINGUNG) ---
+    const cloneFirst = gSlides[0].cloneNode(true);                  // Slide 1
+    const cloneSecond = gSlides[1].cloneNode(true);                 // Slide 2
+    const cloneLast = gSlides[gSlides.length - 1].cloneNode(true);   // Slide Terakhir (Slide 5)
+    const cloneSecondLast = gSlides[gSlides.length - 2].cloneNode(true); // Slide Sebelum Terakhir (Slide 4)
 
-    gTrack.appendChild(firstClone); 
-    gTrack.insertBefore(lastClone, gSlides[0]); 
+    // Tempel 2 clone di ekor (kanan)
+    gTrack.appendChild(cloneFirst); 
+    gTrack.appendChild(cloneSecond); 
 
-    // Perbarui daftar slide pasca klon
+    // Tempel 2 clone di kepala (kiri) secara mundur presisi
+    gTrack.insertBefore(cloneLast, gSlides[0]); 
+    gTrack.insertBefore(cloneSecondLast, cloneLast); 
+
+    // Perbarui daftar slide pasca klon ganda
     gSlides = document.querySelectorAll('.galeri-slide');
-    const gTotalReal = gSlides.length; 
-    let gIndex = 1; 
+    
+    // KUNCI KOORDINAT: Start selalu di Index 2 (Slide 1 Asli) karena ada 2 tameng kloning di kiri
+    let gIndex = 2; 
 
     function perbaruiGaleri(pakeAnimasi = true) {
         const wrapperWidth = gWrapper.offsetWidth;
@@ -171,16 +179,15 @@ if (gTrack && gSlides.length > 0 && gWrapper && btnPrevGaleri && btnNextGaleri) 
             gTrack.style.transition = "none";
         }
         
-        // Hitung koordinat tengah otomatis
+        // Rumus koordinat tengah otomatis
         const koordinatTengah = -gIndex * slideWidth + (wrapperWidth - slideWidth) / 2;
         gTrack.style.transform = `translateX(${koordinatTengah}px)`;
         
-        // Hitung index aktif untuk indikator dots
-        let indexAsli = gIndex - 1;
-        if (gIndex === 0) indexAsli = gTotalOriginal - 1;
-        if (gIndex === gTotalReal - 1) indexAsli = 0;
+        // Rumus lingkaran dots dinamis (Bisa untuk 3, 5, atau berapa pun jumlah slidenya)
+        let indexAsli = (gIndex - 2 + gTotalOriginal) % gTotalOriginal;
+        if (indexAsli < 0) indexAsli = (indexAsli + gTotalOriginal) % gTotalOriginal;
         
-        // Atur skala perbesaran gambar aktif
+        // Efek perbesaran slide aktif
         gSlides.forEach((slide, idx) => {
             slide.style.transition = pakeAnimasi ? "all 0.5s ease" : "none";
             if (idx === gIndex) {
@@ -209,21 +216,23 @@ if (gTrack && gSlides.length > 0 && gWrapper && btnPrevGaleri && btnNextGaleri) 
         perbaruiGaleri(true);
     }
 
-    // --- MEKANISME TELEPORTASI INFINITE ---
+    // --- 2. MEKANISME TELEPORTASI SEAMLESS MULTI-CLONE ---
     gTrack.addEventListener('transitionend', (e) => {
         if (e.target !== gTrack || e.propertyName !== 'transform') return;
         
         isTransitioning = false;
         
-        if (gIndex === gTotalReal - 1) {
+        // JIKA MENTOK KANAN: Pas geser sampai di Kloning Slide 1 (Index 7 jika total slide ada 5)
+        if (gIndex === gTotalOriginal + 2) { 
             gTrack.style.transition = "none"; 
-            gIndex = 1;
+            gIndex = 2; // Lempar instan balik ke Slide 1 Asli
             perbaruiGaleri(false); 
         }
         
-        if (gIndex === 0) {
+        // JIKA MENTOK KIRI: Pas geser sampai di Kloning Slide Terakhir (Index 1)
+        if (gIndex === 1) {
             gTrack.style.transition = "none"; 
-            gIndex = gTotalReal - 2;
+            gIndex = gTotalOriginal + 1; // Lempar instan balik ke Slide Terakhir Asli (Index 5)
             perbaruiGaleri(false); 
         }
     });
@@ -242,7 +251,7 @@ if (gTrack && gSlides.length > 0 && gWrapper && btnPrevGaleri && btnNextGaleri) 
     gDots.forEach((dot, idx) => {
         dot.addEventListener('click', () => {
             if (isTransitioning) return;
-            gIndex = idx + 1;
+            gIndex = idx + 2; // Melewati 2 clone awal
             perbaruiGaleri(true);
             segarkanSiklusOtomatis();
         });
@@ -257,11 +266,68 @@ if (gTrack && gSlides.length > 0 && gWrapper && btnPrevGaleri && btnNextGaleri) 
         mulaiSiklusOtomatis();
     }
 
-    // Jembatan kalkulasi ulang saat halaman termuat sempurna atau ukuran layar berubah
     window.addEventListener('load', () => perbaruiGaleri(false));
     window.addEventListener('resize', () => perbaruiGaleri(false));
 
-    // Inisialisasi Eksekusi Awal
     perbaruiGaleri(false);
     mulaiSiklusOtomatis();
+}
+
+// ==========================================================
+// 4. LOGIKA BACKGROUND HERO SLIDESHOW (PURE SMOOTH CROSS-FADE)
+// ==========================================================
+const heroSection = document.querySelector('.content');
+
+const kumpulanGambarHero = [
+    'assets/home-1.svg',
+    'assets/home-2.svg',
+    'assets/home-3.svg',
+    'assets/home-4.svg'
+];
+
+if (heroSection && kumpulanGambarHero.length > 0) {
+    let indeksGambarSekarang = 0;
+    const durasiGanti = 4000; 
+
+    // Set kondisi awal gambar secara presisi
+    heroSection.style.setProperty('--bg-current', `url('${kumpulanGambarHero[0]}')`);
+    heroSection.style.setProperty('--bg-next', `url('${kumpulanGambarHero[1]}')`);
+
+    function gantiLatarBelakang() {
+        let indeksBerikutnya = (indeksGambarSekarang + 1) % kumpulanGambarHero.length;
+
+        // Lapisan depan memudar maju secara halus menutupi background dasar
+        heroSection.classList.add('is-crossfading');
+
+        // Tunggu hingga durasi fade-in selesai sempurna (1.2 detik)
+        setTimeout(() => {
+            // 👉 LANGKAH A: Ubah gambar dasar di belakang mumpung masih ketutup tameng depan
+            heroSection.style.setProperty('--bg-current', `url('${kumpulanGambarHero[indeksBerikutnya]}')`);
+            
+            // 👉 LANGKAH B (KUNCI SAKTI): Beri jeda mikro 100ms agar browser selesai melukis SVG baru tersebut
+            setTimeout(() => {
+                // Setelah gambar dasar di belakang matang & kembar murni, baru copot kelas transisinya
+                heroSection.classList.remove('is-crossfading');
+
+                // Perbarui tracker indeks saat ini
+                indeksGambarSekarang = indeksBerikutnya;
+
+                // Preload gambar berikutnya lagi di lapisan depan yang sudah kosong
+                let indeksPreload = (indeksBerikutnya + 1) % kumpulanGambarHero.length;
+                heroSection.style.setProperty('--bg-next', `url('${kumpulanGambarHero[indeksPreload]}')`);
+            }, 100); // Jeda aman anti-stuttering browser
+            
+        }, 1200); 
+    }
+
+    let bgInterval = setInterval(gantiLatarBelakang, durasiGanti);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            clearInterval(bgInterval);
+        } else {
+            clearInterval(bgInterval);
+            bgInterval = setInterval(gantiLatarBelakang, durasiGanti);
+        }
+    });
 }

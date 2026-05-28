@@ -83,34 +83,76 @@
     display: inline-block;
 }
 
-/* Jarak aman untuk Konten Utama dan Wadah Warna Abu-abu */
+/* Jarak aman untuk Konten Utama dan Wadah FOTO UTAMA */
 .content {
-    position: relative;        /* Kunci posisi agar elemen lengkungan bisa menempel di bawah */
-    background-color: #e0e0e0; /* Warna abu-abu dipindahkan ke sini */
-    margin-top: 70px;          /* Menyesuaikan jarak aman dari fixed header */
-    padding-top: 60px;         /* Jarak ruang dalam bagian atas */
-    padding-bottom: 350px;     /* Beri ruang ekstra di bawah untuk tempat lengkungannya */
-    overflow: hidden;          /* WAJIB: Memotong sisa lingkaran oval agar tidak meluber keluar layar */
+    position: relative;        
+    margin-top: 70px;          
+    padding-top: 60px;         
+    padding-bottom: 350px;     
+    overflow: hidden;          
+    z-index: 1;                
+    
+    /* 🔥 KUNCI UTAMA: Ubah ke 0.4 (LAPISAN BELAKANG) */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-current);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    --bg-current: url('assets/home-1.svg');
+    --bg-next: url('assets/home-2.svg');
 }
 
-/* MEMBUAT LENGKUNGAN PUTIH DI BAWAH SEKSI ABU-ABU */
+.content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* 🔥 KUNCI UTAMA: Ubah ke 0.4 JUGA (LAPISAN DEPAN) AGAR TETAP SINKRON */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-next);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1; 
+
+    opacity: 0; 
+    transition: none; 
+}
+
+/* Hanya berikan transisi opacity saat menduduki kelas aktif (Fade In) */
+.content.is-crossfading::before {
+    opacity: 1;
+    transition: opacity 1.2s ease-in-out; 
+}
+
+/* MEMBUAT LENGKUNGAN PUTIH DI BAWAH */
 .content::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: -10%;                /* Dilebihkan ke kiri agar lengkungan tidak patah di layar lebar */
-    width: 120%;               /* Dilebihkan ke kanan */
-    height: 120px;             /* Tinggi lengkungan (bisa kamu naik-turunkan angkanya sesuai selera) */
-    background-color: #ffffff; /* Menggunakan warna putih sesuai area bawah */
-    
-    /* Rumus saktinya: Membuat sudut atas kanan & kiri berbentuk oval sempurna */
+    left: -10%;                
+    width: 120%;               
+    height: 120px;             
+    background-color: #F5F5F5; 
     border-top-left-radius: 50% 100%;
     border-top-right-radius: 50% 100%;
+    z-index: 2; 
+}
+
+/* Teks dan Agenda */
+.content > .container {
+    max-width: 1200px; 
+    width: 85%;        
+    margin: 0 auto;    
+    position: relative;
+    z-index: 3; 
 }
 
 /* BACKGROUND HALAMAN BIAR AGAK ABU-ABU SESUAI FOTO */
 body {
-    background-color: #ffffff; /* Warna putih solid sesuai gambar referensi */
+    background-color: #F5F5F5; 
 }
 
 /* ==========================================================
@@ -119,9 +161,15 @@ body {
 
 /* Targetkan container yang BERADA DI DALAM .content saja */
 .content > .container {
-    max-width: 1200px; /* Perkecil nilai ini (misal dari 1440px ke 1200px atau 1150px) */
-    width: 85%;        /* Memberikan ruang kosong (padding) otomatis di kiri dan kanan */
-    margin: 0 auto;    /* Kunci posisi agar wadah yang menyempit ini tetap presisi di tengah monitor */
+    max-width: 1200px; 
+    width: 85%;        
+    margin: 0 auto;    
+    
+    /* ==========================================================
+       👉 CHANGES 4: PAKSA SEMUA TEKS & AGENDA KELUAR DI DEPAN OVERLAY GELAP
+       ========================================================== */
+    position: relative;
+    z-index: 3; /* Angka 3 memastikan dia melompati kain hitam overlay (Z-Index 1) */
 }
 
 /* --- STYLING 1: PENGUMUMAN BERJALAN --- */
@@ -194,7 +242,7 @@ body {
 /* Judul Utama: Dibuat lebih tegas dan tebal */
 .main-title {
     font-size: 35px;
-    color: #333333; /* Warna abu-abu sangat gelap sesuai Figma */
+    color: #ffffff; /* Warna abu-abu sangat gelap sesuai Figma */
     font-weight: 800; /* Tebal maksimal agar dominan */
     line-height: 1.25;
     margin-bottom: 20px;
@@ -204,7 +252,7 @@ body {
 /* Sub-judul/Deskripsi di bawahnya */
 .sub-title {
     font-size: 15px;
-    color: #555555;
+    color: #ffffffce;
     line-height: 1.6;
     font-weight: 500;
     margin-bottom: 35px;
@@ -223,11 +271,20 @@ body {
 .search-input-box {
     display: flex;
     align-items: center;
-    background-color: #bebebe; /* Abu-abu solid sesuai gambar komponen */
     padding: 12px 15px;
-    border-radius: 14px;       /* Sudut membulat halus khas Figma */
-    flex: 1;                   /* Memaksa kotak input mengambil sisa ruang */
+    border-radius: 14px;       
+    flex: 1;                   
     gap: 12px;
+    
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(10px);                 
+    -webkit-backdrop-filter: blur(10px);         
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);  
+
+    /* ==========================================================
+       👉 GANTI BAGIAN INI: Dari 1px rgba menjadi 2px #ffffff murni
+       ========================================================== */
+    border: 1px solid #ffffff67; 
 }
 
 /* Teks di dalam Input */
@@ -237,19 +294,18 @@ body {
     outline: none;             /* Menghilangkan garis biru saat diklik */
     font-size: 14px;
     font-weight: 500;
-    color: #333333;
+    color: #ffffffce;
     width: 100%;
 }
 
 /* Mengatur warna placeholder text "Beasiswa" */
 .search-input-box input::placeholder {
-    color: #555555;
+    color: #ffffffce;
     opacity: 1;
 }
 
 /* Tombol "Cari" Gelap */
 .btn-search {
-    background-color: #333333; /* Warna charcoal/hitam pekat */
     color: #ffffff;
     border: none;
     padding: 0 25px;
@@ -257,11 +313,18 @@ body {
     font-size: 14px;
     font-weight: 500;          /* Teks tombol dibuat tebal */
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    /* 🔥 KUNCI TOMBOL VERSI KACA KONTRAST */
+    background-color: rgba(0, 0, 0, 0.3);        /* Hitam transparan 40% agar lebih tegas dari input box */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
 }
 
+/* Efek Hover Tombol Cari saat Disentuh Mouse */
 .btn-search:hover {
-    background-color: #1e1e1e; /* Sedikit lebih gelap saat kursor menempel */
+    background-color: rgba(255, 255, 255, 0.25); /* Berubah menjadi putih transparan saat di-hover */
+    color: #ffffff;
 }
 
 /* Judul Kecil Pencarian Populer */
@@ -269,7 +332,7 @@ body {
     display: block;
     font-size: 15px;
     font-weight: 600;          /* Cetak tebal sesuai gambar */
-    color: #333333;
+    color: #ffffff;
     margin-bottom: 14px;
 }
 
@@ -281,8 +344,7 @@ body {
 
 /* Pil Tag (Beasiswa, UKT, dll) */
 .tag {
-    background-color: #bebebe; /* Warna abu-abu disamakan dengan input box */
-    color: #333333;
+    color: #ffffffce;
     text-decoration: none;     /* Menghapus garis bawah bawaan link */
     padding: 9px 15px;
     border-radius: 10px;       /* Kotak membulat proporsional */
@@ -295,6 +357,12 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 6px;                  /* Mengatur jarak renggang antara teks dan ikon panah */
+    /* 🔥 KUNCI SAKTI GLOSSY TRANSPARAN */
+    background-color: rgba(255, 255, 255, 0.15); /* Warna putih transparan 15% */
+    backdrop-filter: blur(10px);                 /* Membuat objek di belakangnya blur halus */
+    -webkit-backdrop-filter: blur(10px);         /* Pengaman untuk browser Safari */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Garis tepi putih tipis untuk refleksi cahaya kaca */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);  /* Bayangan lembut agar boks terlihat mengambang */
 }
 
 /* Tambahkan selector baru ini untuk mengunci dimensi ukuran ikon asetmu */
@@ -305,7 +373,7 @@ body {
 }
 
 .tag:hover {
-    background-color: #b0b0b0; /* Efek visual sedikit menggelap saat di-hover */
+    background-color: #004d7194; /* Efek visual sedikit menggelap saat di-hover */
 }
 
 /* ==========================================================
@@ -314,11 +382,17 @@ body {
 
 /* Wadah Utama Agenda */
 .agenda-card {
-    background-color: #bebebe; /* Warna abu-abu solid sesuai gambar referensi */
     border-radius: 24px;       /* Sudut kotak lebih membulat halus */
     padding: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    color: #333333;
+    background-color: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(10px);                 
+    -webkit-backdrop-filter: blur(10px);         
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);  
+
+    /* ==========================================================
+       👉 GANTI BAGIAN INI: Dari 1px rgba menjadi 2px #ffffff murni
+       ========================================================== */
+    border: 1px solid #ffffff67; 
 }
 
 /* Header: Teks Agenda BEM & Tanggal */
@@ -332,12 +406,12 @@ body {
 .agenda-header h3 {
     font-size: 20px;
     font-weight: 800; /* Super Bold */
-    color: #333333;
+    color: #ffffff;
 }
 
 .agenda-date {
     font-size: 14px;
-    color: #444444;
+    color: #ffffffce;
     font-weight: 500;
 }
 
@@ -352,7 +426,7 @@ body {
 .agenda-time-box h2 {
     font-size: 48px;
     font-weight: 800;
-    color: #333333;
+    color: #ffffff;
     letter-spacing: -1px;
 }
 
@@ -366,7 +440,7 @@ body {
 .agenda-details h4 {
     font-size: 18px;
     font-weight: 600;
-    color: #333333;
+    color: #ffffffce;
     margin-bottom: 4px;
 }
 
@@ -375,7 +449,7 @@ body {
     align-items: center;
     gap: 5px;
     font-size: 13px;
-    color: #555555;
+    color: #ffffffce;
     font-weight: 500;
     margin-bottom: 20px;
 }
@@ -384,7 +458,7 @@ body {
 .agenda-status-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    background-color: rgba(255, 255, 255, 0.25); /* Efek putih transparan */
+    background-color: rgba(255, 255, 255, 0.2); /* Efek putih transparan */
     border: 1px solid rgba(255, 255, 255, 0.4);  /* Garis tepi tipis halus */
     border-radius: 14px;
     padding: 8px 3px;
@@ -413,14 +487,14 @@ body {
 
 .status-col span {
     font-size: 11px;
-    color: #444444;
+    color: #ffffffce;
     font-weight: 700;
 }
 
 /* Badge Pil Kategori (Warna Emas/Khaki) */
 .badge {
-    background-color: #b09a73; /* Warna emas/khaki sesuai gambar */
-    color: #ffffff;
+    background-color: #004D71; /* Warna emas/khaki sesuai gambar */
+    color: #ffffffce;
     text-align: center;
     width: 85%;                /* Memastikan proporsi pil pas di dalam kolom */
     padding: 5px 0;
@@ -433,13 +507,13 @@ body {
 /* Tombol Lihat Kalender Agenda */
 .btn-agenda-calendar {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.35); /* Latar tombol transparan cerah */
+    background-color: rgba(255, 255, 255, 0.2); /* Latar tombol transparan cerah */
     border: 1px solid rgba(255, 255, 255, 0.5);
     padding: 11px 0;
     border-radius: 14px;
     font-size: 12px;
     font-weight: 800;
-    color: #333333;
+    color: #ffffff;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     transition: all 0.2s ease;
@@ -456,18 +530,18 @@ body {
 
 .layanan-section {
     padding: 35px 0 80px 0;
-    background-color: #ffffff; 
+    background-color: #F5F5F5; 
 }
 
 .layanan-box {
-    background-color: #e5e5e5; 
+    background-color: #ffffff; 
     border-radius: 24px;       
     padding: 40px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
     position: relative;   
     z-index: 10;          
     margin-top: -300px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .layanan-title {
@@ -549,7 +623,7 @@ body {
    ========================================================== */
 .slider-section {
     padding: 0 0 100px 0; 
-    background-color: #ffffff; 
+    background-color: #F5F5F5; 
     display: flex;
     justify-content: center;
 }
@@ -770,7 +844,7 @@ body {
    STYLING SEKSI KABAR BEM / BERITA
    ========================================================== */
 .kabar-section {
-    background-color: #e0e0e0; /* Menggunakan warna abu-abu solid sesuai contoh komponen */
+    background-color: #ffffff; /* Menggunakan warna abu-abu solid sesuai contoh komponen */
     padding: 64px 0;           /* Memberikan ruang vertikal atas-bawah yang luas & ideal */
 }
 
@@ -890,7 +964,7 @@ body {
    STYLING SEKSI PENGUMUMAN FILE / LAMPIRAN
    ========================================================== */
 .file-section {
-    background-color: #e0e0e0; /* Selaras dengan abu-abu seksi berita */
+    background-color: #ffffff; /* Selaras dengan abu-abu seksi berita */
     padding: 0 0 64px 0;        /* Atasnya 0 karena menyambung dari bawah seksi berita */
 }
 
@@ -935,7 +1009,7 @@ body {
 .file-thumb-wrapper {
     width: 100%;
     height: 190px;
-    background-color: #ffffff; /* Sesuai contoh fotomu yang berlatar putih/terang */
+    background-color: #F5F5F5; /* Sesuai contoh fotomu yang berlatar putih/terang */
     border-radius: 16px;
     display: flex;
     justify-content: center;
@@ -950,8 +1024,8 @@ body {
 
 /* Ukuran & warna siluet ikon dokumen utama */
 .big-doc-icon {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     stroke: #333333;
 }
 
@@ -1099,10 +1173,10 @@ body {
 }
 
 .galeri-caption p {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 1.6;
-    margin-bottom: 8px;
+    margin-bottom: 30px;
 }
 
 .galeri-time {
@@ -1136,7 +1210,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 32px;
+    margin-top: 5px;
 }
 
 .g-dot {
